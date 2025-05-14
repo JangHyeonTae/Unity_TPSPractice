@@ -6,13 +6,13 @@ using UnityEngine;
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] private float walkSpeed;
-    public float WalkSpeed { get; set; }
+    public float WalkSpeed { get { return walkSpeed; } set { walkSpeed = value; } }
 
     [SerializeField] private float runSpeed;
-    public float RunSpeed { get; set; }
+    public float RunSpeed { get { return runSpeed; } set { runSpeed = value; } }
 
     [SerializeField] private float rotateSpeed;
-    public float RotateSpeed { get; set; }
+    public float RotateSpeed { get { return rotateSpeed; } set { rotateSpeed = value; } }
 
     private bool isAiming;
     public bool IsAiming { get { return isAiming; } set { isAiming = value; OnAiming?.Invoke(isAiming); } }
