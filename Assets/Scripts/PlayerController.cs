@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamagable
 {
     public bool isControllActivate { get; set; } = true;
 
@@ -119,6 +119,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(int amount)
     {
         status.CurrentHp = Mathf.Max(0, status.CurrentHp - amount);
+        Debug.Log($"HP : {status.CurrentHp}");
         //IsTakeDamage == true;
         if (status.CurrentHp <= 0)
         {
