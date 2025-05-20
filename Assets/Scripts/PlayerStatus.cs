@@ -14,6 +14,13 @@ public class PlayerStatus : MonoBehaviour
     [SerializeField] private float rotateSpeed;
     public float RotateSpeed { get { return rotateSpeed; } set { rotateSpeed = value; } }
 
+    public int MaxHp;
+
+
+    [field: SerializeField] private int currentHp;
+    public int CurrentHp { get { return currentHp; } set { currentHp = value; OnHpChanged?.Invoke(currentHp); } }
+    public event Action<int> OnHpChanged;
+
     private bool isAiming;
     public bool IsAiming { get { return isAiming; } set { isAiming = value; OnAiming?.Invoke(isAiming); } }
     public event Action<bool> OnAiming;

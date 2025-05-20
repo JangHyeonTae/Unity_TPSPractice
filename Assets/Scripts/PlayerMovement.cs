@@ -1,32 +1,33 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     private Rigidbody rigid;
     private PlayerStatus status;
 
+    [Header("Cam Setting")]
     [SerializeField] private Transform aim;
     [SerializeField] private Transform avatar;
-
     [SerializeField][Range(-90, 0)]
     private float minPitch;
-
     [SerializeField] [Range(0, 90)]
     private float maxPitch;
 
+    [Header("Rotate Setting")]
     [SerializeField] private float mouseSensitivity = 1;
-
     //현재 회전각을 불러오는 변수
     Vector2 currentRotation;
+
     private void Awake()
     {
         rigid = GetComponent<Rigidbody>();
         status = GetComponent<PlayerStatus>();
     }
 
-    public Vector3 SetRotate()
+    public Vector3 SetAimRotate()
     {
         Vector2 mouse;
         mouse.x = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -44,7 +45,7 @@ public class PlayerMovement : MonoBehaviour
         aim.localEulerAngles = new Vector3(currentRotation.y, currentEuler.y, currentEuler.z);
 
         //회전 방향 벡터 반환
-        Vector3 rotateDirVector = Vector3.forward;
+        Vector3 rotateDirVector = transform.forward;
         rotateDirVector.y = 0;
 
         return rotateDirVector.normalized;
@@ -73,21 +74,18 @@ public class PlayerMovement : MonoBehaviour
 
     public Vector3 GetMoveDirection()
     {
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
-
-        Vector3 input = new Vector3(x, 0, z);
+        Vector3 input = GetInputDirection();
 
         Vector3 dir = (transform.right * input.x) + (transform.forward * input.z);
 
         return dir.normalized; // 정규화 - 크기를 제거하고 방향만 남김
     }
 
-    //public Vector3 GetInputDirection()
-    //{
-    //    float x = Input.GetAxis("Horizontal");
-    //    float z = Input.GetAxis("Vertical");
-    //
-    //    return new Vector3(x, 0, z);
-    //}
+    public Vector3 GetInputDirection()
+    {
+        float x = Input.GetAxis("Horizontal");
+        float z = Input.GetAxis("Vertical");
+    
+        return new Vector3(x, 0, z);
+    }
 }
