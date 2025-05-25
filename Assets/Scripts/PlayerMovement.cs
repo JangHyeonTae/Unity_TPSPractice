@@ -88,4 +88,9 @@ public class PlayerMovement : MonoBehaviour
     
         return new Vector3(x, 0, z);
     }
+
+    public Vector3 GlobalPos()
+    {
+        return gameObject.transform.position;
+    }
 }
