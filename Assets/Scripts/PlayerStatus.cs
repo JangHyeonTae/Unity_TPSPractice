@@ -3,6 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum PlayerStatusSet
+{
+    None,
+    Inventory,
+    Die
+}
+
 public class PlayerStatus : MonoBehaviour
 {
     [SerializeField] private float walkSpeed;

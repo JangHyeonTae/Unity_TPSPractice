@@ -6,7 +6,7 @@ public abstract class Item : ScriptableObject
 {
     public string name;
     public string dsc;
-    public Sprite sprite;
+    public Sprite icon;
     public GameObject model;
 
     public virtual void Use(PlayerController controller) { }
